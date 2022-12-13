@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.example.letstalk.Client;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,4 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    Client client = new Client("181.215.69.116", 8999);
+
 }
