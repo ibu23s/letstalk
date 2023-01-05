@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.example.letstalk.Client;
+import com.example.letstalk.client2.client.java;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,9 +32,27 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         txtLoginInfo = findViewById(R.id.txtLoginInfo);
 
-        txtLoginInfo.setOnClickListener(new View.OnClickListener() {
+        Client client = new Client("181.215.69.116", 8999);
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String username = null;
+                try {
+                    username = client.requestData("getUsername");
+                    if (username!= null)
+                        btnSubmit.setText(username);
+            } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+        };
+/*
+        txtLoginInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                String username = client.requestData("getUsername");
+                btnSubmit.setText(username);
                 if (isSinginUp){
                     isSinginUp = false;
                     edtUsername.setVisibility(View.GONE);
@@ -48,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
+            */
         });
     }
-    Client client = new Client("181.215.69.116", 8999);
+
+
 
 }
